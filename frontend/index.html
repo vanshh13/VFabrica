@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" data-theme="linen">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="VFabrica is an AI-powered B2B textile marketplace connecting buyers and suppliers."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#f4f7fa',
+                100: '#e5ecf3',
+                500: '#123b5d',
+                600: '#0f324f',
+                700: '#0c283f',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <title>VFabrica | Textile Marketplace</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+  </html>
