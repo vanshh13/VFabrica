@@ -4,19 +4,37 @@
 
 VFabrica connects verified fabric suppliers with wholesale buyers on a single platform. Buyers can browse catalogs, compare specifications, manage carts and orders, and get AI-assisted sourcing recommendations—without needing an account to explore products. Suppliers manage listings, inventory, warehouses, and order fulfillment. Administrators oversee users, categories, and supplier verification.
 
+🌐 **Live Demo:** https://vfabrica.vercel.app/
+
+## 📸 Landing Page Preview
+
+![VFabrica Landing Page](https://drive.google.com/uc?id=1cB9doINNh4NiBTBOlo77hJqqyPbGpkLL)
+
+## 📸 Product-Catalog Page Preview
+
+![VFabrica Product-Catalog Page](https://drive.google.com/uc?id=1B3tLFCc9nzimu2_HZNXmfYLQr4DH47vZ)
+
+## 🎥 Demo Video
+
+[![Watch the Demo](https://img.shields.io/badge/Watch-Demo_Video-blue?style=for-the-badge)](https://your-demo-video-link.com)
+
+**Demo Video:** [https://vfabrica-demo-video-link.com](https://drive.google.com/file/d/1uaPBz0LqC3A7JQRlxy4-QF5G0Rf4hzSu/view?usp=sharing)
+
 ---
 
 ## Table of contents
 
-- [Features](#features)
-- [Tech stack](#tech-stack)
-- [Architecture](#architecture)
-- [Project structure](#project-structure)
-- [Getting started](#getting-started)
-- [Environment variables](#environment-variables)
-- [API overview](#api-overview)
-- [Deployment](#deployment)
-- [Scripts reference](#scripts-reference)
+* [Landing Page Preview](#-landing-page-preview)
+* [Demo Video](#-demo-video)
+* [Features](#features)
+* [Tech stack](#tech-stack)
+* [Architecture](#architecture)
+* [Project structure](#project-structure)
+* [Getting started](#getting-started)
+* [Environment variables](#environment-variables)
+* [API overview](#api-overview)
+* [Deployment](#deployment)
+* [Scripts reference](#scripts-reference)
 
 ---
 
