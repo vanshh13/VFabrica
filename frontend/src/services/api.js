@@ -3,6 +3,26 @@ import { useAuthStore } from '../store/useAuthStore';
 
 const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
 
+/** Endpoints that must work without login (no token refresh / logout on 401). */
+export const PUBLIC_API_PATH_PREFIXES = [
+    '/auth/login',
+    '/auth/register',
+    '/auth/refresh-token',
+    '/products',
+    '/categories',
+    '/buyer/products',
+    '/buyer/suppliers',
+    '/ai/chat'
+];
+
+export function isPublicApiPath(url) {
+    if (!url) return false;
+    const path = url.replace(baseURL, '').split('?')[0];
+    return PUBLIC_API_PATH_PREFIXES.some(
+        (prefix) => path === prefix || path.startsWith(`${prefix}/`)
+    );
+}
+
 export const api = axios.create({
     baseURL,
     withCredentials: true,
@@ -12,7 +32,8 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-    const token = useAuthStore.getState().tokens?.accessToken;
+    const { isAuthenticated, tokens } = useAuthStore.getState();
+    const token = isAuthenticated ? tokens?.accessToken : null;
     if (token) {
         config.headers = config.headers || {};
         config.headers.Authorization = `Bearer ${token}`;
@@ -50,7 +71,9 @@ api.interceptors.response.use(
             const refreshToken = tokens?.refreshToken;
 
             if (!refreshToken) {
-                logout();
+                if (!isPublicApiPath(originalRequest.url)) {
+                    logout();
+                }
                 return Promise.reject(error);
             }
 

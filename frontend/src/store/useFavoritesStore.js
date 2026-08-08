@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { getFavorites, addFavorite, removeFavorite } from '../services/buyerService';
+import { useAuthStore } from './useAuthStore';
 
 export const useFavoritesStore = create(
   persist(
@@ -11,6 +12,11 @@ export const useFavoritesStore = create(
 
       // Initialize / Sync from server
       fetchFavorites: async () => {
+        const { isAuthenticated } = useAuthStore.getState();
+        if (!isAuthenticated) {
+          set({ favorites: [], favoriteIds: new Set(), loading: false });
+          return;
+        }
         set({ loading: true });
         try {
           const res = await getFavorites();

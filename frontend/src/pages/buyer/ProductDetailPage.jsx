@@ -5,7 +5,8 @@ import { useAuthStore } from '../../store/useAuthStore';
 import { useCartStore } from '../../store/useCartStore';
 import { useFavoritesStore } from '../../store/useFavoritesStore';
 import { useCartAuthorization } from '../../hooks/useCartAuthorization';
-import { getProductDetails, getMarketplaceProducts, addToCartApi } from '../../services/buyerService';
+import { getProductDetails, getProducts } from '../../services/productService';
+import { addToCartApi } from '../../services/buyerService';
 import { getProductUnit, formatUnitQuantity } from '../../utils/productUtils';
 import {
     ShieldCheck,
@@ -293,9 +294,15 @@ export function ProductDetailPage() {
 
                 if (details?.category_id || details?.categoryId) {
                     const catId = details.category_id || details.categoryId;
-                    const listResponse = await getMarketplaceProducts({ categoryId: catId, limit: 4 });
-                    const list = listResponse?.data?.items || listResponse?.items || [];
-                    setRelated(list.filter(p => String(p.id) !== String(id)).slice(0, 4));
+                    try {
+                        const listResponse = await getProducts({ categoryId: catId, limit: 8 });
+                        const list = Array.isArray(listResponse?.data)
+                            ? listResponse.data
+                            : (listResponse?.items || []);
+                        setRelated(list.filter(p => String(p.id) !== String(id)).slice(0, 4));
+                    } catch (relatedErr) {
+                        console.error('Failed to load related products:', relatedErr);
+                    }
                 }
             } catch (err) {
                 console.error('Error fetching product details:', err);
